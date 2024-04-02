@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.darley</groupId>
 	<artifactId>desafioBackend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>desafioBackend</name>
 	<description>Desafio First Decision</description>
 	<properties>
