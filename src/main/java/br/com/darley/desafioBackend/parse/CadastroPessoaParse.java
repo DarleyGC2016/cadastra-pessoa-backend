@@ -12,10 +12,10 @@ public class CadastroPessoaParse {
 
     public CadastroPessoa entity(CadastroPessoaDTO dto){
         CadastroPessoa pessoa = new CadastroPessoa();
-        if (dto.getNome() == null &&
-            dto.getEmail() == null &&
-            dto.getSenha() == null &&
-            dto.getConfirmarSenha() == null) {
+        if (dto.getNome().isEmpty() &&
+            dto.getEmail().isEmpty() &&
+            dto.getSenha().isEmpty() &&
+            dto.getConfirmarSenha().isEmpty()) {
             pessoa.setMensagemEnum(MensagemEnum.ERRO);
             return pessoa;
         } else {
