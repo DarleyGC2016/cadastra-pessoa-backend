@@ -22,7 +22,10 @@ public class CadastroPessoaRest {
 
         @PostMapping(path = "/new")
         public ResponseEntity<CadastroPessoa> save(@RequestBody CadastroPessoaDTO dto){
-            return new ResponseEntity<>(cadastroPessoaService.save(dto), HttpStatus.CREATED);
-
+             if (dto.getConfirmarSenha().equals(dto.getSenha())) {                         
+                 return new ResponseEntity<>(cadastroPessoaService.save(dto), HttpStatus.CREATED);
+             }else{
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);                  
+             }
         }
 }

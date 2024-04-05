@@ -14,13 +14,14 @@ public class CadastroPessoaService{
     @Autowired
     private CadastroPessoaRepository cadastroPessoaRepository;
 
-    @SuppressWarnings("null")
-    public CadastroPessoa save (CadastroPessoaDTO dto) {
-        CadastroPessoa cadastroPessoa = CadastroPessoaParse
-        .get()
-        .entity(dto);
-        cadastroPessoaRepository.save(cadastroPessoa);
-        
-        return cadastroPessoa;
+
+    public CadastroPessoa save (CadastroPessoaDTO dto) {                   
+            CadastroPessoa cadastroPessoa = CadastroPessoaParse
+            .get()
+            .entity(dto);
+
+            cadastroPessoaRepository.save(cadastroPessoa);
+
+            return cadastroPessoa;
     }
 }
