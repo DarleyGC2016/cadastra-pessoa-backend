@@ -1,19 +1,15 @@
 package br.com.darley.desafioBackend.resource;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.darley.desafioBackend.dto.CadastroPessoaDTO;
-import br.com.darley.desafioBackend.enums.MensagemEnum;
 import br.com.darley.desafioBackend.models.CadastroPessoa;
 import br.com.darley.desafioBackend.service.CadastroPessoaService;
 
@@ -25,17 +21,7 @@ public class CadastroPessoaRest {
         private CadastroPessoaService cadastroPessoaService;
 
         @PostMapping(path = "/new")
-        public ResponseEntity<CadastroPessoa> save(@RequestBody CadastroPessoaDTO dto){
-                if (!dto.getNome().isEmpty() && !dto.getEmail().isEmpty() && !dto.getSenha().isEmpty() &&
-                    !dto.getConfirmarSenha().isEmpty() && dto.getConfirmarSenha().equals(dto.getSenha())) {                         
-                    return new ResponseEntity<>(cadastroPessoaService.save(dto), HttpStatus.CREATED);
-                }else{
-                        return new ResponseEntity<>(HttpStatus.NOT_FOUND);                  
-                }
-        }
-
-        @GetMapping(path = "/existe")
-        public ResponseEntity<String> verificaConexao(){
-            return new ResponseEntity<>(" Api está conecta!!", HttpStatus.OK);
+        public ResponseEntity<CadastroPessoa> save(@RequestBody CadastroPessoaDTO dto){                       
+                return new ResponseEntity<>(cadastroPessoaService.save(dto), HttpStatus.CREATED);
         }
 }

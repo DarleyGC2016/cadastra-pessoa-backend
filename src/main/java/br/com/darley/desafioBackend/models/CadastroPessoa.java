@@ -2,14 +2,14 @@ package br.com.darley.desafioBackend.models;
 
 import java.io.Serializable;
 
-import br.com.darley.desafioBackend.enums.MensagemEnum;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +38,9 @@ public class CadastroPessoa implements Serializable{
     @Column(name = "confirmar_senha")
     private String confirmarSenha;
     
-    @Column(name = "mensagem")
-    @Enumerated(EnumType.STRING)
-    private MensagemEnum mensagemEnum;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_mensagem",
+                referencedColumnName = "id")
+    private Mensagem mensagem;
+
 }
