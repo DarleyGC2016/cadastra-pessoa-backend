@@ -1,7 +1,9 @@
 package br.com.darley.desafioBackend.enums;
 
 public enum MensagemEnum {
-    SUCESSO(1L, "Sucesso ao cadastrar os dados!!"),ERRO(2L, "Erro!! A confirmação de Senha não é igual a Senha");
+    SUCESSO(1L, "Sucesso ao cadastrar os dados!!"),
+    ERRO(2L, "Erro!! A confirmação de Senha não combina com a Senha"),
+    JA_EXISTE(3L, "Este usuário já existe!");
 
     private Long id;
 

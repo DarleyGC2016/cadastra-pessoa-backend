@@ -2,14 +2,11 @@ package br.com.darley.desafioBackend.models;
 
 import java.io.Serializable;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,12 +32,21 @@ public class CadastroPessoa implements Serializable{
     @Column(name = "senha")
     private String senha;
 
-    @Column(name = "confirmar_senha")
+    @Column(name = "confirmar_senha", nullable = true)
     private String confirmarSenha;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_mensagem",
-                referencedColumnName = "id")
-    private Mensagem mensagem;
+    @Column(nullable = true, columnDefinition = "")
+    private String mensagem;
 
+    @Override
+    public String toString() {
+        return "CadastroPessoa{" +
+                "nome='" + nome + '\'' +
+                ", mensagem=" + mensagem +
+                ", senha='" + senha + '\'' +
+                ", confirmarSenha='" + confirmarSenha + '\'' +
+                ", email='" + email + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
