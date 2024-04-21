@@ -23,11 +23,7 @@ public class CadastroPessoaService{
 
     public CadastroPessoa save (CadastroPessoaDTO dto) {   
         CadastroPessoa cadastroPessoa = null; 
-         
-        Optional<CadastroPessoa> pessoaOptional = cadastroPessoaRepository.findAll()
-        .stream()
-        .filter(pessoa -> pessoa.getEmail().equals(dto.getEmail()))
-        .findFirst();
+        Optional<CadastroPessoa> pessoaOptional = cadastroPessoaRepository.findByEmail(dto.getEmail());
         if (pessoaOptional.isPresent()){
             cadastroPessoa = CadastroPessoaParse
             .get()
@@ -35,15 +31,17 @@ public class CadastroPessoaService{
             return cadastroPessoa;
         }
         else if (dto.getConfirmarSenha().equals(dto.getSenha())) {
-           seguranca = new ConfigSeguranca();
-          
-            dto.setSenha(seguranca.passwordEncoder().encode(dto.getSenha()));
+            seguranca = new ConfigSeguranca();
+            
+            String senhaCriptografada = seguranca.passwordEncoder().encode(dto.getSenha());     
+            dto.setSenha(senhaCriptografada);
+            
             cadastroPessoa = CadastroPessoaParse
             .get()
             .entity(dto);
 
             cadastroPessoaRepository.save(cadastroPessoa);
-            cadastroPessoa.setMensagem(MensagemEnum.SUCESSO.getDescricao());   
+            cadastroPessoa.setMensagem(MensagemEnum.SUCESSO.getDescricao());  
         } else {
             cadastroPessoa = CadastroPessoaParse
             .get()
